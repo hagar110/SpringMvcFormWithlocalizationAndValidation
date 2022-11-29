@@ -25,7 +25,7 @@ public class AnnotationConfigWebApplicationConfig implements WebApplicationIniti
 
     ServletRegistration.Dynamic dynamic = servletContext.addServlet("dispatcherServlet", dispatcherServlet);
 
-    dynamic.addMapping("*.htm");
+    dynamic.addMapping("/");
     dynamic.setLoadOnStartup(1);
 
     servletContext.addListener(new ContextLoaderListener(rootContext));

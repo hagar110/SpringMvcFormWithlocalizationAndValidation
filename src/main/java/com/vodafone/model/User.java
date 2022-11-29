@@ -1,19 +1,33 @@
 package com.vodafone.model;
-
-
+import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "user")
 public class User {
-    @NotBlank
+    @Id
+    private int id;
+    @NotNull
+    @Size(min = 3, max=30)
     private String firstName;
-    @NotBlank
+    @NotNull
+    @Size(min = 3, max=30)
     private String lastName;
-    @NotNull()
-    @Min(value = 2000)
-    private Integer salary;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    @Min(3000)
+    private Integer salary;
+    public User(){}
     public String getFirstName() {
         return firstName;
     }

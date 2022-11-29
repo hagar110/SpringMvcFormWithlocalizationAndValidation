@@ -1,22 +1,26 @@
 package com.vodafone.service;
 
 import com.vodafone.model.User;
+import com.vodafone.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
-    List<User> users = new ArrayList<>();
-    @Override
-    public User save(User user) {
-        users.add(user);
-        return user;
+public class UserServiceImpl  implements UserService{
+
+    UserRepository userRepository;
+    @Autowired
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    public void save(User user) {
+        userRepository.saveUserToDb(user);
     }
 
-    @Override
     public List<User> findAll() {
-        return users;
+        return userRepository.getUsers();
     }
 }
